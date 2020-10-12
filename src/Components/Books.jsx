@@ -1,39 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Spinner, Container, Row, Col } from 'react-bootstrap';
 import { Navbar, Form, FormControl, Button } from 'react-bootstrap';
-
+import BookContext from '../context/book/bookContext';
 import Book from './Book';
+import Cart from './Cart';
 
 const Books = () => {
-    const db = "http://henri-potier.xebia.fr/books";
-    const [books, setBooks] = useState([]);
-    const [isLoading, setLoading] = useState(true)
+    const bookState = useContext(BookContext);
+    const { books, filtered_book_list, loadBooks, filterBooks, loading } = bookState;
     const [search, setSearch] = useState('');
-    const [filteredList, setFilteredList] = useState([])
-
-    const fetchData = async db => {
-        try {
-            const res = await fetch(db);
-            const json = await res.json()
-            console.log("JSON FROM FETCH DATA=", json)
-            setBooks(json);
-            setLoading(false);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const filterByTitle = (array_data, word) => {
-        const new_book_list = array_data.filter(({ title }) => title.toLowerCase().includes(word.toLowerCase()));
-        setFilteredList(new_book_list);
-    }
 
     useEffect(() => {
-        if (search) {
-            filterByTitle(books, search)
-        } else {
-            fetchData(db);
-        }
+        if (!books.length) loadBooks();
+        if (search) filterBooks(search);
+        // eslint-disable-next-line
     }, [search])
 
     const handleChange = e => setSearch(e.target.value)
@@ -41,24 +21,29 @@ const Books = () => {
     return (
         <div className="book-list">
             <Navbar sticky={"top"} bg="dark" variant="dark">
-                <Form inline >
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" value={search} onChange={handleChange} />
-                    <Button variant="outline-info">Search</Button>
-                </Form>
+                <Col xs={11}>
+                    <Form inline >
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2" value={search} onChange={handleChange} />
+                        <Button variant="outline-info">Search</Button>
+                    </Form>
+                </Col>
+                <Col xs={1}>
+                    <Cart />
+                </Col>
             </Navbar >
             <br />
             <Container>
                 <Row>
-                    {isLoading ?
+                    {loading ?
                         <Spinner animation="grow" /> :
                         <Container>
                             {!search ?
                                 <Row>
                                     {books.map(book => <Col key={book.isbn} xs={12} sm={6} lg={4} xl={3}> <Book book={book} /></Col>)}
                                 </Row> : null}
-                            {search && filteredList && filteredList.length ?
+                            {search && filtered_book_list && filtered_book_list.length ?
                                 <Row>
-                                    {filteredList.map(book => <Col key={book.isbn} xs={12} sm={6} lg={4} xl={3}> <Book book={book} /></Col>)}
+                                    {filtered_book_list.map(book => <Col key={book.isbn} xs={12} sm={6} lg={4} xl={3}> <Book book={book} /></Col>)}
                                 </Row> : null}
                         </Container>
                     }

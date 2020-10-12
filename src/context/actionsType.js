@@ -1,0 +1,8 @@
+const ACTIONS = {
+    LOAD_BOOKS: 'LOAD_BOOK',
+    FILTER_BOOKS: 'FILTER_BOOKS',
+    ADD_TO_CART: 'ADD_TO_CART',
+    DELETE_FROM_CART: 'DELETE_FROM_CART',
+}
+
+export default ACTIONS;
