@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Spinner, Container, Row, Col } from 'react-bootstrap';
-import { Navbar, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Form, FormControl, Button, InputGroup } from 'react-bootstrap';
 import BookContext from '../context/book/bookContext';
 import Book from './Book';
 import Cart from './Cart';
@@ -20,16 +20,25 @@ const Books = () => {
 
     return (
         <div className="book-list">
-            <Navbar sticky={"top"} bg="dark" variant="dark">
-                <Col xs={11}>
-                    <Form inline >
+            <Navbar style={{ justifyContent: 'space-between' }} sticky={"top"} bg="dark" variant="dark">
+                <Form inline >
+                    <InputGroup className="mb-2 mr-sm-2">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text>
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                                </svg>
+                            </InputGroup.Text>
+                        </InputGroup.Prepend>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" value={search} onChange={handleChange} />
-                        <Button variant="outline-info">Search</Button>
-                    </Form>
-                </Col>
-                <Col xs={1}>
+                        {/* <Button variant="outline-info">Search</Button> */}
+                    </InputGroup>
+                </Form>
+
+                <Navbar.Brand >
                     <Cart />
-                </Col>
+                </Navbar.Brand>
             </Navbar >
             <br />
             <Container>

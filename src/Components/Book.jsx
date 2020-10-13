@@ -8,7 +8,7 @@ const Book = ({ book }) => {
 
     return <div className='book-card'>
         <Card style={{ overflow: 'hidden' }} >
-            <Card.Img variant="top" src={book.cover}  />
+            <Card.Img variant="top" src={book.cover} />
             <Card.Body>
                 <Card.Title>{book.title}</Card.Title>
                 <Card.Text style={{ height: 80 }}>
