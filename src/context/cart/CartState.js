@@ -10,7 +10,8 @@ const CartState = props => {
         cart: [],
         total_price: 0,
         total_items: 0,
-        isOpen: false
+        isOpen: false,
+        commercial_offers: []
     }
 
     const [state, dispatch] = useReducer(cartReducer, initialState);
@@ -41,6 +42,22 @@ const CartState = props => {
         dispatch({ type: ACTIONS.HANDLE_CART_MODAL })
     }
 
+    const getCommercialOffers = async () => {
+        const ISBNs = state.cart.reduce((isbns, current_item, index) => index === 0 ?
+            `${current_item.isbn}` :
+            `${isbns},${current_item.isbn}`, '')
+        console.log(ISBNs)
+        const URL = `http://henri-potier.xebia.fr/books/{${ISBNs}}/commercialOffers`
+        try {
+            const res = await fetch(URL);
+            const json = await res.json();
+            console.log(json)
+            dispatch({ type: ACTIONS.UPDATE_COMMERCIAL_OFFERS, payload: json });
+        } catch (error) {
+            console.error(error.message)
+        }
+    }
+
     return (
         <CartContext.Provider
             value={{
@@ -51,6 +68,7 @@ const CartState = props => {
                 addBookToCart,
                 deleteFromCart,
                 handleCartModal,
+                getCommercialOffers,
             }}
         >
             {props.children}

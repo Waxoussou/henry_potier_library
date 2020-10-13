@@ -52,6 +52,11 @@ export default (state, action) => {
                 cart: [...state.cart.filter(item => item.isbn !== action.payload)],
                 total_items: state.total_items - 1
             }
+        case ACTIONS.UPDATE_COMMERCIAL_OFFERS:
+            return {
+                ...state,
+                commercial_offers: action.payload
+            }
         default:
             return state
     }

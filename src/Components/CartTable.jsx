@@ -26,15 +26,16 @@ const CartTable = ({ cart, deleteFromCart, addBookToCart, total_items, total_pri
                             <Button onClick={() => deleteFromCart(item)} variant='warning'>-</Button>
                             <Button onClick={() => addBookToCart(item)} variant='info'>+</Button>
                         </ButtonGroup ></td>
-
                 </tr>
             })}
         </tbody>
         <tfoot>
-            <th>Total</th>
-            <td colSpan={2}></td>
-            <td>{total_price} €</td>
-            <td>{total_items}</td>
+            <tr>
+                <th>Total</th>
+                <td colSpan={2}></td>
+                <td>{total_price} €</td>
+                <td>{total_items}</td>
+            </tr>
         </tfoot>
     </Table>
 }

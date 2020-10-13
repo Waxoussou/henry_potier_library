@@ -1,11 +1,17 @@
-import React, { useContext, Fragment } from 'react';
-import { Modal, Button, Table, ButtonGroup } from 'react-bootstrap';
+import React, { useContext, Fragment, useEffect } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 import CartTable from './CartTable';
 import CartContext from '../context/cart/cartContext';
+
 const CartModal = () => {
     const cartState = useContext(CartContext);
-    const { cart, isOpen, handleCartModal, addBookToCart, deleteFromCart, total_items, total_price } = cartState;
+    const { cart, isOpen, handleCartModal, addBookToCart, deleteFromCart,
+        total_items, total_price, getCommercialOffers } = cartState;
 
+    useEffect(() => {
+        getCommercialOffers();
+        // eslint-disable-next-line
+    }, [cart])
 
     return (
         <>
@@ -25,7 +31,6 @@ const CartModal = () => {
                             total_items={total_items}
                             total_price={total_price} />
                     }
-
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleCartModal}>
