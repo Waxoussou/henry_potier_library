@@ -11,7 +11,8 @@ export default (state, action) => {
                     price: action.payload.price,
                     quantity: 1
                 }],
-                total_price: state.total_price + action.payload.price
+                total_price: state.total_price + action.payload.price,
+                total_items: state.total_items + 1
             }
         case ACTIONS.INCREMENT_QUANTITY:
             return {
@@ -21,6 +22,18 @@ export default (state, action) => {
                     [...items.filter(item => item.isbn !== action.payload), { ...current_item, quantity: current_item.quantity + 1 }] :
                     // else return the all current item to the item list
                     [...items, current_item], [])],
+                total_items: state.total_items + 1
+            }
+        case ACTIONS.DECREMENT_QUANTITY:
+            return {
+                ...state,
+                cart: [
+                    // SAME AS INCREMENT BUT MINUS 1 FROM QUANTITY INSTEAD 
+                    ...state.cart.reduce((items, current_item) => current_item.isbn === action.payload ?
+                        [...items.filter(item => item.isbn !== action.payload), { ...current_item, quantity: current_item.quantity - 1 }] :
+                        [...items, current_item], [])
+                ],
+                total_items: state.total_items - 1,
             }
         case ACTIONS.UPDATE_TOTAL_PRICE:
             return {
@@ -31,6 +44,13 @@ export default (state, action) => {
             return {
                 ...state,
                 isOpen: !state.isOpen
+            }
+
+        case ACTIONS.DELETE_FROM_CART:
+            return {
+                ...state,
+                cart: [...state.cart.filter(item => item.isbn !== action.payload)],
+                total_items: state.total_items - 1
             }
         default:
             return state

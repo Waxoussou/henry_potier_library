@@ -30,16 +30,15 @@ const CartState = props => {
     }
 
     const deleteFromCart = (book) => {
-        dispatch({ type: ACTIONS.DELETE_FROM_CART, payload: book })
+        const { quantity } = state.cart.filter(item => item.isbn === book.isbn)[0];
+        quantity > 1 ?
+            dispatch({ type: ACTIONS.DECREMENT_QUANTITY, payload: book.isbn }) :
+            dispatch({ type: ACTIONS.DELETE_FROM_CART, payload: book.isbn })
+        updateTotalPrice()
     }
+
     const handleCartModal = () => {
         dispatch({ type: ACTIONS.HANDLE_CART_MODAL })
-    }
-    const showCartModal = () => {
-        dispatch({ type: "SHOW_CART_MODAL" })
-    }
-    const closeCartModal = () => {
-        dispatch({ type: "CLOSE_CART_MODAL" })
     }
 
     return (
@@ -47,11 +46,11 @@ const CartState = props => {
             value={{
                 cart: state.cart,
                 isOpen: state.isOpen,
+                total_items: state.total_items,
+                total_price: state.total_price,
                 addBookToCart,
                 deleteFromCart,
                 handleCartModal,
-                showCartModal,
-                closeCartModal
             }}
         >
             {props.children}

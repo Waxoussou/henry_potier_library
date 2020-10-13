@@ -1,19 +1,32 @@
-import React, { useContext } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import React, { useContext, Fragment } from 'react';
+import { Modal, Button, Table, ButtonGroup } from 'react-bootstrap';
+import CartTable from './CartTable';
 import CartContext from '../context/cart/cartContext';
-
 const CartModal = () => {
     const cartState = useContext(CartContext);
-    const { isOpen, handleCartModal } = cartState;
+    const { cart, isOpen, handleCartModal, addBookToCart, deleteFromCart, total_items, total_price } = cartState;
 
 
     return (
         <>
-            <Modal show={isOpen} onHide={handleCartModal}>
+            <Modal size={'xl'} show={isOpen} onHide={handleCartModal} animation={false}> {/* animation false to avoid findDOMNode Warning - [TODO: implement useRef] */}
                 <Modal.Header closeButton>
                     <Modal.Title>Your Shopping Cart</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Body >
+                    {!total_items ? <Fragment >
+                        {/* IF NO ITEM YET , SHOW A MESSAGE INSTEAD */}
+                        <p>NO PRODUCT IN CART YET</p>
+                        <p>go to library and choose you first book</p>
+                    </Fragment> :
+                        <CartTable cart={cart}
+                            addBookToCart={addBookToCart}
+                            deleteFromCart={deleteFromCart}
+                            total_items={total_items}
+                            total_price={total_price} />
+                    }
+
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleCartModal}>
                         Close
