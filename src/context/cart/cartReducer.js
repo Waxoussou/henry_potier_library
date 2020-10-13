@@ -27,6 +27,11 @@ export default (state, action) => {
                 ...state,
                 total_price: state.cart.reduce((items, current_item) => items + (current_item.price * current_item.quantity), 0)
             }
+        case ACTIONS.HANDLE_CART_MODAL:
+            return {
+                ...state,
+                isOpen: !state.isOpen
+            }
         default:
             return state
     }

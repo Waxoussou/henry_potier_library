@@ -8,7 +8,9 @@ import ACTIONS from '../actionsType';
 const CartState = props => {
     const initialState = {
         cart: [],
-        total_price: 0
+        total_price: 0,
+        total_items: 0,
+        isOpen: false
     }
 
     const [state, dispatch] = useReducer(cartReducer, initialState);
@@ -30,13 +32,26 @@ const CartState = props => {
     const deleteFromCart = (book) => {
         dispatch({ type: ACTIONS.DELETE_FROM_CART, payload: book })
     }
+    const handleCartModal = () => {
+        dispatch({ type: ACTIONS.HANDLE_CART_MODAL })
+    }
+    const showCartModal = () => {
+        dispatch({ type: "SHOW_CART_MODAL" })
+    }
+    const closeCartModal = () => {
+        dispatch({ type: "CLOSE_CART_MODAL" })
+    }
 
     return (
         <CartContext.Provider
             value={{
                 cart: state.cart,
+                isOpen: state.isOpen,
                 addBookToCart,
-                deleteFromCart
+                deleteFromCart,
+                handleCartModal,
+                showCartModal,
+                closeCartModal
             }}
         >
             {props.children}

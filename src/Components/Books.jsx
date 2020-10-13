@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Spinner, Container, Row, Col } from 'react-bootstrap';
-import { Navbar, Form, FormControl, Button, InputGroup } from 'react-bootstrap';
+import { Navbar, Form, FormControl, InputGroup } from 'react-bootstrap';
 import BookContext from '../context/book/bookContext';
 import Book from './Book';
 import Cart from './Cart';
@@ -32,7 +32,6 @@ const Books = () => {
                             </InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" value={search} onChange={handleChange} />
-                        {/* <Button variant="outline-info">Search</Button> */}
                     </InputGroup>
                 </Form>
 

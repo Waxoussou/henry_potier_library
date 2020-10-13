@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import CartState from './context/cart/CartState';
+import BookState from './context/book/BookState';
 import './index.css';
 
 import App from './App';
@@ -7,7 +9,11 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BookState>
+      <CartState>
+        <App />
+      </CartState>
+    </BookState>
   </React.StrictMode>,
   document.getElementById('root')
 );
