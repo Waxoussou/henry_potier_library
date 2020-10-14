@@ -5,8 +5,9 @@ import CartContext from '../context/cart/cartContext';
 const Book = ({ book }) => {
     const cartState = useContext(CartContext);
     const { addBookToCart } = cartState;
+
     const synopsis = (
-        <Popover id="popover-basic">
+        <Popover id="popover-basic"  >
             <Popover.Title as="h3">{book.title}</Popover.Title>
             <Popover.Content style={{ height: 200, overflow: 'scroll' }}>
                 {book.synopsis}
@@ -19,7 +20,7 @@ const Book = ({ book }) => {
             <Card.Img style={{ backgroundSize: 'cover', width: '70%', margin: '10px auto' }} variant="top" src={book.cover} />
             <Card.Body>
                 <Card.Title style={{ height: 50 }}>{book.title}</Card.Title>
-                <OverlayTrigger trigger='click' placement='auto' overlay={synopsis}>
+                <OverlayTrigger trigger='click' placement='auto' overlay={synopsis} >
                     <Card.Text className='book__synopsis' style={{ cursor: 'pointer', height: 76, overflow: 'hidden' }}>
                         {book.synopsis[0].slice(0, 160)} ...</Card.Text>
                 </OverlayTrigger>
