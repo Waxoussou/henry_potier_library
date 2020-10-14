@@ -5,8 +5,9 @@ import CartContext from '../context/cart/cartContext';
 
 const CartModal = () => {
     const cartState = useContext(CartContext);
-    const { cart, isOpen, handleCartModal, addBookToCart, deleteFromCart,
-        total_items, total_price, getCommercialOffers, best_offer, checkOut } = cartState;
+    const { cart, isOpen, handleCartModal,
+        addBookToCart, deleteFromCart, total_items, total_price,
+        getCommercialOffers, best_offer, checkOut } = cartState;
 
     useEffect(() => {
         getCommercialOffers();
