@@ -33,6 +33,7 @@ const CartModal = () => {
                             total_price={total_price}
                             best_offer={best_offer} />
                     }
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleCartModal}>
