@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import CartState from './context/cart/CartState';
 import BookState from './context/book/BookState';
+import InfoState from './context/info/InfoState';
 import './index.css';
 
 import App from './App';
@@ -11,7 +12,9 @@ ReactDOM.render(
   <React.StrictMode>
     <BookState>
       <CartState>
-        <App />
+        <InfoState>
+          <App />
+        </InfoState>
       </CartState>
     </BookState>
   </React.StrictMode>,

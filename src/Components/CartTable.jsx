@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, ButtonGroup, Button } from 'react-bootstrap';
 
-const CartTable = ({ cart, deleteFromCart, addBookToCart, total_items, total_price }) => {
+const CartTable = ({ cart, deleteFromCart, addBookToCart, total_items, total_price, best_offer }) => {
     return <Table responsive bordered={false} hover size="sm" >
         <thead>
             <tr>
@@ -16,7 +16,7 @@ const CartTable = ({ cart, deleteFromCart, addBookToCart, total_items, total_pri
         <tbody>
             {cart.map((item, index) => {
                 return <tr key={index + item.isbn}>
-                    <td>{item.index}</td>
+                    <td>{index + 1}</td>
                     <td>{item.isbn}</td>
                     <td>{item.title}</td>
                     <td>{item.price} €</td>
@@ -34,7 +34,17 @@ const CartTable = ({ cart, deleteFromCart, addBookToCart, total_items, total_pri
                 <th>Total</th>
                 <td colSpan={2}></td>
                 <td>{total_price} €</td>
-                <td>{total_items}</td>
+                <td>{total_items} books</td>
+            </tr>
+            <tr>
+                <th>Discount</th>
+                <td colSpan={2}></td>
+                <td colSpan={2}> {(best_offer - total_price).toFixed(2)}€</td>
+            </tr>
+            <tr>
+                <th>Final Price</th>
+                <td colSpan={2}></td>
+                <td colSpan={2}> {best_offer.toFixed(2)}€</td>
             </tr>
         </tfoot>
     </Table>

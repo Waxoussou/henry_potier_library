@@ -30,3 +30,21 @@ test('Select best offer for a price of 65€', () => {
   }
   expect(SelectBestOffer(65, offers)).toBe(50);
 })
+
+test('Select best offer for a price when no slice offer', () => {
+  const offers = {
+    "offers": [
+      { "type": "percentage", "value": 5 },
+      { "type": "minus", "value": 15 },
+    ]
+  }
+  expect(SelectBestOffer(65, offers)).toBe(50);
+})
+test('Select best offer for a price when only percentage offer', () => {
+  const offers = {
+    "offers": [
+      { "type": "percentage", "value": 10 },
+    ]
+  }
+  expect(SelectBestOffer(100, offers)).toBe(90);
+})

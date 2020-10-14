@@ -55,7 +55,17 @@ export default (state, action) => {
         case ACTIONS.UPDATE_COMMERCIAL_OFFERS:
             return {
                 ...state,
-                commercial_offers: action.payload
+                commercial_offers: action.payload.commercial_offers,
+                best_offer: action.payload.best_offer
+            }
+        case ACTIONS.CHECKOUT:
+            return {
+                cart: [],
+                total_price: 0,
+                total_items: 0,
+                isOpen: false,
+                commercial_offers: [],
+                best_offer: null,
             }
         default:
             return state

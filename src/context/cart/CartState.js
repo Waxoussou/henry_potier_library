@@ -3,6 +3,7 @@ import CartContext from './cartContext';
 import cartReducer from './cartReducer';
 
 import ACTIONS from '../actionsType';
+import { SelectBestOffer } from '../../offerUtils';
 
 
 const CartState = props => {
@@ -11,7 +12,8 @@ const CartState = props => {
         total_price: 0,
         total_items: 0,
         isOpen: false,
-        commercial_offers: []
+        commercial_offers: [],
+        best_offer: null,
     }
 
     const [state, dispatch] = useReducer(cartReducer, initialState);
@@ -51,12 +53,19 @@ const CartState = props => {
         try {
             const res = await fetch(URL);
             const json = await res.json();
-            console.log(json)
-            dispatch({ type: ACTIONS.UPDATE_COMMERCIAL_OFFERS, payload: json });
+            const new_price = SelectBestOffer(state.total_price, json);
+            dispatch({ type: ACTIONS.UPDATE_COMMERCIAL_OFFERS, payload: { commercial_offers: json, best_offer: new_price } });
         } catch (error) {
             console.error(error.message)
         }
     }
+
+    const checkOut = () => {
+        dispatch({ type: ACTIONS.CHECKOUT })
+
+    }
+
+
 
     return (
         <CartContext.Provider
@@ -65,10 +74,12 @@ const CartState = props => {
                 isOpen: state.isOpen,
                 total_items: state.total_items,
                 total_price: state.total_price,
+                best_offer: state.best_offer,
                 addBookToCart,
                 deleteFromCart,
                 handleCartModal,
                 getCommercialOffers,
+                checkOut
             }}
         >
             {props.children}

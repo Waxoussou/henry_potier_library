@@ -6,7 +6,7 @@ import CartContext from '../context/cart/cartContext';
 const CartModal = () => {
     const cartState = useContext(CartContext);
     const { cart, isOpen, handleCartModal, addBookToCart, deleteFromCart,
-        total_items, total_price, getCommercialOffers } = cartState;
+        total_items, total_price, getCommercialOffers, best_offer, checkOut } = cartState;
 
     useEffect(() => {
         getCommercialOffers();
@@ -29,15 +29,16 @@ const CartModal = () => {
                             addBookToCart={addBookToCart}
                             deleteFromCart={deleteFromCart}
                             total_items={total_items}
-                            total_price={total_price} />
+                            total_price={total_price}
+                            best_offer={best_offer} />
                     }
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleCartModal}>
                         Close
             </Button>
-                    <Button variant="primary" onClick={handleCartModal}>
-                        Save Changes
+                    <Button disabled={!total_items ? true : false} variant="primary" onClick={checkOut}>
+                        Checkout
             </Button>
                 </Modal.Footer>
             </Modal>
