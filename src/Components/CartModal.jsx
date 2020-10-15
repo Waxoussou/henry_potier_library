@@ -1,4 +1,5 @@
 import React, { useContext, Fragment, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
 import CartTable from './CartTable';
 import CartContext from '../context/cart/cartContext';
@@ -7,7 +8,7 @@ const CartModal = () => {
     const cartState = useContext(CartContext);
     const { cart, isOpen, handleCartModal,
         addBookToCart, deleteFromCart, total_items, total_price,
-        getCommercialOffers, best_offer, checkOut } = cartState;
+        getCommercialOffers, best_offer } = cartState;
 
     useEffect(() => {
         getCommercialOffers();
@@ -21,7 +22,7 @@ const CartModal = () => {
                     <Modal.Title>Your Shopping Cart</Modal.Title>
                 </Modal.Header>
                 <Modal.Body >
-                    {!total_items ? <Fragment >
+                    {!total_items ? <Fragment >npm
                         {/* IF NO ITEM YET , SHOW A MESSAGE INSTEAD */}
                         <p>NO PRODUCT IN CART YET</p>
                         <p>go to library and choose you first book</p>
@@ -39,9 +40,11 @@ const CartModal = () => {
                     <Button variant="secondary" onClick={handleCartModal}>
                         Close
             </Button>
-                    <Button disabled={!total_items ? true : false} variant="primary" onClick={checkOut}>
-                        Checkout
-            </Button>
+                    <Link to='/checkout'>
+                        <Button disabled={!total_items ? true : false} variant="primary">
+                            Checkout
+                    </Button>
+                    </Link>
                 </Modal.Footer>
             </Modal>
         </>

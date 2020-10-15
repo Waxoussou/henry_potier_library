@@ -3,7 +3,6 @@ import { Navbar, Form, InputGroup, FormControl } from 'react-bootstrap';
 import Cart from './Cart';
 
 const NavHead = ({ search, handleChange }) => {
-
     return <Navbar style={{ justifyContent: 'space-between' }} sticky={"top"} bg="dark" variant="dark">
         <Form inline style={{ width: '50%', }}>
             <InputGroup style={{ width: '100%', }} className="mb-2 mr-sm-2">

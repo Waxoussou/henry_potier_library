@@ -9,6 +9,7 @@ export default (state, action) => {
                     isbn: action.payload.isbn,
                     title: action.payload.title,
                     price: action.payload.price,
+                    cover: action.payload.cover,
                     quantity: 1
                 }],
                 total_price: state.total_price + action.payload.price,

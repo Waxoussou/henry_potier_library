@@ -5,6 +5,7 @@ import InfoContext from '../context/info/infoContext';
 import NavHead from './NavHead';
 import Book from './Book';
 import Info from './Info';
+import CartModal from './CartModal';
 
 const Books = () => {
     const bookState = useContext(BookContext);
@@ -31,10 +32,11 @@ const Books = () => {
         <div className="book-list">
             <NavHead search={search} handleChange={handleChange} />
             <Info />
+            <CartModal />
             <Container>
                 <Row>
                     {loading ?
-                        <Spinner style={{ margin: 'auto' }} animation="grow" /> :
+                        <Spinner animation="grow" /> :
                         <Container>
                             {!search ?
                                 <Row style={{ rowGap: 20 }}>
