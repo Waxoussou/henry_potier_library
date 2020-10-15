@@ -62,7 +62,6 @@ const CartState = props => {
 
     const checkOut = () => {
         dispatch({ type: ACTIONS.CHECKOUT })
-
     }
 
 

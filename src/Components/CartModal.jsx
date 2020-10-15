@@ -34,16 +34,11 @@ const CartModal = () => {
                             total_price={total_price}
                             best_offer={best_offer} />
                     }
-
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCartModal}>
-                        Close
-            </Button>
+                    <Button variant="secondary" onClick={handleCartModal}>Close</Button>
                     <Link to='/checkout'>
-                        <Button disabled={!total_items ? true : false} variant="primary">
-                            Checkout
-                    </Button>
+                        <Button disabled={!total_items ? true : false} variant="primary">Checkout</Button>
                     </Link>
                 </Modal.Footer>
             </Modal>

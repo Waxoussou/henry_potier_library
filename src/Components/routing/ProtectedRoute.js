@@ -3,8 +3,8 @@ import { Route, Redirect } from 'react-router-dom';
 import CartContext from '../../context/cart/cartContext';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
-    const cartContext = useContext(CartContext);
-    const { total_items } = cartContext;
+    const { total_items } = useContext(CartContext);
+
     return (
         <Route
             {...rest}

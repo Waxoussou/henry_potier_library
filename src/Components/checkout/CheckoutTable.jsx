@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from 'react';
-import { Container, Form, Col, Button, ButtonGroup, Row, Table, Image, } from 'react-bootstrap';
+import React, { Fragment } from 'react';
+import { Col, Button, ButtonGroup, Row, Image, } from 'react-bootstrap';
 
 const TRASHIcon = () => {
     return <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
