@@ -9,9 +9,6 @@ const TRASHIcon = () => {
 }
 
 const CheckoutTable = ({ item, total_items, deleteFromCart, addBookToCart }) => {
-    const [toggle, setToggle] = useState(false)
-    const handleClick = () => setToggle(true)
-
     return <Fragment>
         <tr>
             <td>
@@ -32,7 +29,6 @@ const CheckoutTable = ({ item, total_items, deleteFromCart, addBookToCart }) => 
                     </Col>
                 </Row>
             </td>
-            {/* <td style={{ fontWeight: 700 }}>EUR {item.price}</td> */}
             <Row as={'td'} style={{ marginRight: 5, justifyContent: 'flex-end', fontWeight: 700 }}>EUR {item.price}</Row>
         </tr>
     </Fragment >

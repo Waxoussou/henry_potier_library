@@ -1,13 +1,18 @@
-import React, { useContext, useState } from 'react';
-import { Container, Form, Col, Button, Row, Table, Image, Navbar } from 'react-bootstrap';
+import React, { useContext, useState, useEffect } from 'react';
+import { Container, Form, Accordion, Card, Col, Button, Row, Table, Image, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Info from './Info';
-
 import CheckoutTable from './checkout/CheckoutTable';
 import CartContext from '../context/cart/cartContext';
+
 const Checkout = () => {
-    const { cart, deleteFromCart, addBookToCart, total_items, total_price, best_offer } = useContext(CartContext)
+    const { cart, deleteFromCart, addBookToCart, total_items, total_price, best_offer, getCommercialOffers } = useContext(CartContext)
     const [toggle, setToggle] = useState(false);
+
+    useEffect(() => {
+        getCommercialOffers();
+        // eslint-disable-next-line
+    }, [cart])
 
     return <>
         <Navbar bg='dark' variant='dark' sticky='top'>
@@ -15,6 +20,7 @@ const Checkout = () => {
         </Navbar>
         <Info />
         <Container >
+
             <Row>
                 <h2>Shopping Cart</h2>
                 <Table borderless hover>
@@ -35,67 +41,20 @@ const Checkout = () => {
                             <td colSpan={2}></td>
                             <Row as={'td'} style={{ fontWeight: 700 }} >Subtotal ({total_items} items): EUR {total_price}</Row>
                         </tr>
+                        <tr>
+                            <td colSpan={2}></td>
+                            <Row size={'sm'} as={'td'} style={{ fontWeight: 700 }} >Discount : EUR {(total_price - best_offer).toFixed(2)}</Row>
+                        </tr>
+                        <tr>
+                            <td colSpan={2}></td>
+                            <Row as={'td'} >Total : EUR {best_offer.toFixed(2)}</Row>
+                        </tr>
                     </tfoot>
                 </Table>
             </Row>
             <Row>
                 <Col md={{ span: 8, offset: 2 }}>
-                    <Form>
-                        <Form.Row>
-                            <Form.Group as={Col} xs={3}>
 
-                                <Form.Label>Gender</Form.Label>
-                                <Form.Control as="select" defaultValue="Choose...">
-                                    <option>Choose...</option>
-                                    <option>M </option>
-                                    <option>Mme </option>
-                                </Form.Control>
-                            </Form.Group>
-
-                            <Form.Group as={Col} controlId="formGridPassword">
-                                <Form.Label>Firsname</Form.Label>
-                                <Form.Control type="text" placeholder="firstname" />
-                            </Form.Group>
-
-                            <Form.Group as={Col} controlId="formGridPassword">
-                                <Form.Label>Lastname</Form.Label>
-                                <Form.Control type="text" placeholder="Lastname" />
-                            </Form.Group>
-                        </Form.Row>
-
-                        <Form.Row>
-                            <Form.Group as={Col} controlId="formGridEmail">
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" placeholder="Enter email" />
-                            </Form.Group>
-                        </Form.Row>
-
-                        <Form.Group controlId="formGridAddress1">
-                            <Form.Label>Address</Form.Label>
-                            <Form.Control placeholder="1234 Main St" />
-                        </Form.Group>
-
-                        <Form.Group controlId="formGridAddress2">
-                            <Form.Label>Address 2</Form.Label>
-                            <Form.Control placeholder="Apartment, studio, or floor" />
-                        </Form.Group>
-                        <Form.Row>
-                            <Form.Group as={Col} xs={7}>
-                                <Form.Label>City</Form.Label>
-                                <Form.Control placeholder="City" />
-                            </Form.Group>
-                            <Form.Group as={Col}>
-                                <Form.Label>State</Form.Label>
-                                <Form.Control placeholder="State" />
-                            </Form.Group>
-                            <Form.Group as={Col}>
-                                <Form.Label>Zip</Form.Label>
-                                <Form.Control placeholder="Zip" />
-                            </Form.Group>
-                        </Form.Row>
-
-                        <Button variant="primary" type="submit">Submit</Button>
-                    </Form>
                 </Col>
             </Row>
 
