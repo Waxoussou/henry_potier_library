@@ -4,7 +4,7 @@ import Cart from './Cart';
 
 const NavHead = ({ search, handleChange }) => {
     return <Navbar style={{ justifyContent: 'space-between' }} sticky={"top"} bg="dark" variant="dark">
-        <Form inline style={{ width: '50%', }}>
+        <Form inline style={{ width: '50%', }} >
             <InputGroup style={{ width: '100%', }} className="mb-2 mr-sm-2">
                 <InputGroup.Prepend>
                     <InputGroup.Text>
