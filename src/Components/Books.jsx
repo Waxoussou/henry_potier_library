@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Spinner, Container, Row, Col } from 'react-bootstrap';
+
+import MainNav from './layout/MainNav';
+import Book from './book/Book';
+import Info from './layout/Info';
+
 import BookContext from '../context/book/bookContext';
 import InfoContext from '../context/info/infoContext';
-import NavHead from './NavHead';
-import Book from './Book';
-import Info from './Info';
-import CartModal from './CartModal';
 
 const Books = () => {
     // IMPORT CONTEXT
@@ -30,10 +31,9 @@ const Books = () => {
 
     return (
         <div className="book-list">
-            <NavHead search={search} handleChange={handleChange} />
+            <MainNav search={search} handleChange={handleChange} />
             <Info />
             <br />
-            <CartModal />
             <Container>
                 {loading ?
                     <Spinner style={{ margin: 'auto' }} animation="grow" /> :

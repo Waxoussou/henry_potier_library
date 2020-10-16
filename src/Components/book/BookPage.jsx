@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap';
 import Nav from '../layout/Nav';
 import BookContext from '../../context/book/bookContext';
 
-const BookPage = ({ match, location }) => {
+const BookPage = ({ match }) => {
     const { books } = useContext(BookContext);
     const [current, setCurrent] = useState({});
 
@@ -18,8 +18,8 @@ const BookPage = ({ match, location }) => {
     return <>
         <Nav />
         {current && <>
-            <Card>
-                <Card.Header>{current.title}</Card.Header>
+            <Card border={'light'}>
+                <Card.Header><h2>{current.title}</h2></Card.Header>
                 <Card.Body>
                     <Card.Title>synopsis </Card.Title>
                     <Card.Text>

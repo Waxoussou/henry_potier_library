@@ -8,8 +8,8 @@ import CartContext from '../context/cart/cartContext';
 
 const Checkout = () => {
     // IMPORT CONTEXT 
-    const { cart, deleteFromCart, addBookToCart, total_items, total_price,
-        best_offer, getCommercialOffers, checkOut } = useContext(CartContext);
+    const cartState = useContext(CartContext);
+    const { cart, deleteFromCart, addBookToCart, total_items, total_price, best_offer, getCommercialOffers, checkOut } = cartState;
 
     useEffect(() => {
         getCommercialOffers();

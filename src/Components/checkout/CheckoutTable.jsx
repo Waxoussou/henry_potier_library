@@ -19,7 +19,7 @@ const UpdateQuantity = ({ item, total_items, total_price, best_offer, deleteFrom
                 <Row as={'div'}>
                     <Col xs={10} sm={4} >
                         <ButtonGroup style={{ border: '1px solid #6D757D', borderRadius: 5 }} size="sm" >
-                            <Button onClick={() => deleteFromCart(item)} variant='secondary' size='sm'>{total_items > 1 ? ' - ' : <TrashIcon />}</Button>
+                            <Button onClick={() => deleteFromCart(item)} variant='secondary' size='sm'>{item.quantity > 1 ? ' - ' : <TrashIcon />}</Button>
                             <Button style={{ margin: '0 5px' }} variant='light' disabled> {item.quantity}</Button>
                             <Button onClick={() => addBookToCart(item)} variant='secondary' size='sm'>+</Button>
                         </ButtonGroup >
@@ -59,7 +59,7 @@ const CheckoutTable = ({ cart, total_items, total_price, best_offer, deleteFromC
             </tr>
             <tr>
                 <td colSpan={2}></td>
-                <Row as={'td'} >Total : EUR {best_offer.toFixed(2)}</Row>
+                <Row as={'td'} >Total : EUR {best_offer && best_offer.toFixed(2)}</Row>
             </tr>
         </tfoot>
     </Table>

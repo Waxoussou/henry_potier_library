@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import CartContext from '../context/cart/cartContext';
-import InfoContext from '../context/info/infoContext';
+import CartContext from '../../context/cart/cartContext';
+import InfoContext from '../../context/info/infoContext';
 
 const Cart = () => {
     const cartState = useContext(CartContext);

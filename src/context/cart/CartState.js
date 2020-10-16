@@ -3,7 +3,7 @@ import CartContext from './cartContext';
 import cartReducer from './cartReducer';
 
 import ACTIONS from '../actionsType';
-import { SelectBestOffer } from '../../offerUtils';
+import { SelectBestOffer } from '../../utils/offerUtils';
 
 
 const CartState = props => {
@@ -27,9 +27,7 @@ const CartState = props => {
         }
     }
 
-    const updateTotalPrice = () => {
-        dispatch({ type: ACTIONS.UPDATE_TOTAL_PRICE })
-    }
+    const updateTotalPrice = () => dispatch({ type: ACTIONS.UPDATE_TOTAL_PRICE })
 
     const deleteFromCart = (book) => {
         const { quantity } = state.cart.filter(item => item.isbn === book.isbn)[0];
@@ -57,11 +55,7 @@ const CartState = props => {
         }
     }
 
-    const checkOut = () => {
-        dispatch({ type: ACTIONS.CHECKOUT })
-    }
-
-
+    const checkOut = () => dispatch({ type: ACTIONS.CHECKOUT })
 
     return (
         <CartContext.Provider
@@ -80,7 +74,6 @@ const CartState = props => {
             {props.children}
         </CartContext.Provider>
     );
-
 }
 
 export default CartState;

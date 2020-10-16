@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import InfoContext from '../context/info/infoContext';
+import InfoContext from '../../context/info/infoContext';
 import { Alert } from 'react-bootstrap';
 const Info = () => {
     const { alerts } = useContext(InfoContext);
