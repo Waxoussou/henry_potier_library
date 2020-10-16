@@ -1,4 +1,4 @@
-import { applyPercentage, applyMinus, applySlice, returnLowestNumber, SelectBestOffer } from './offerUtils';
+import { applyPercentage, applyMinus, applySlice, returnLowestNumber, SelectBestOffer } from './utils/offerUtils';
 
 test('apply 10% on 200€ expect to be equal to 180', () => {
   expect(applyPercentage(200, 10)).toBe(180);
