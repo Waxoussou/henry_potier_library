@@ -4,19 +4,19 @@ import InfoContext from '../../context/info/infoContext';
 
 const CheckoutForm = ({ checkOut }) => {
     const { setInfo } = useContext(InfoContext);
+
     const handleSubmit = e => {
         e.preventDefault();
         const message = 'your order will be sent to you shortly. Please do not forget to let your window open in order to let our delivery owl do their job!';
         const type = 'success';
-        setInfo(message, type)
+        setInfo(message, type) //send info to the user
         setTimeout(() => {
-            checkOut();
+            checkOut(); // empty cartState and redirect on '/'
         }, 2500)
     }
     return <Form onSubmit={handleSubmit}>
         <Form.Row>
             <Form.Group as={Col} xs={3}>
-
                 <Form.Label>Gender</Form.Label>
                 <Form.Control as="select" defaultValue="Choose...">
                     <option>Choose...</option>

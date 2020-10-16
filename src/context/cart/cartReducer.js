@@ -41,12 +41,6 @@ export default (state, action) => {
                 ...state,
                 total_price: state.cart.reduce((items, current_item) => items + (current_item.price * current_item.quantity), 0)
             }
-        case ACTIONS.HANDLE_CART_MODAL:
-            return {
-                ...state,
-                isOpen: !state.isOpen
-            }
-
         case ACTIONS.DELETE_FROM_CART:
             return {
                 ...state,
@@ -64,7 +58,6 @@ export default (state, action) => {
                 cart: [],
                 total_price: 0,
                 total_items: 0,
-                isOpen: false,
                 commercial_offers: [],
                 best_offer: null,
             }

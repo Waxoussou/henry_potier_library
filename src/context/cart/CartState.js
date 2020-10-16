@@ -11,7 +11,6 @@ const CartState = props => {
         cart: [],
         total_price: 0,
         total_items: 0,
-        isOpen: false,
         commercial_offers: [],
         best_offer: null,
     }
@@ -40,20 +39,18 @@ const CartState = props => {
         updateTotalPrice()
     }
 
-    const handleCartModal = () => {
-        dispatch({ type: ACTIONS.HANDLE_CART_MODAL })
-    }
-
     const getCommercialOffers = async () => {
+        // get a string from all books isbn that where added to cart in order to be used by the fetch url to get commercial offers
         const ISBNs = state.cart.reduce((isbns, current_item, index) => index === 0 ?
             `${current_item.isbn}` :
             `${isbns},${current_item.isbn}`, '')
-        console.log(ISBNs)
         const URL = `http://henri-potier.xebia.fr/books/{${ISBNs}}/commercialOffers`
+        // then fetch 
         try {
             const res = await fetch(URL);
             const json = await res.json();
-            const new_price = SelectBestOffer(state.total_price, json);
+            const new_price = SelectBestOffer(state.total_price, json); // select the best offer according to the json object send in paramater(result of the fetch)
+            //    and dispatch
             dispatch({ type: ACTIONS.UPDATE_COMMERCIAL_OFFERS, payload: { commercial_offers: json, best_offer: new_price } });
         } catch (error) {
             console.error(error.message)
@@ -76,7 +73,6 @@ const CartState = props => {
                 best_offer: state.best_offer,
                 addBookToCart,
                 deleteFromCart,
-                handleCartModal,
                 getCommercialOffers,
                 checkOut
             }}
