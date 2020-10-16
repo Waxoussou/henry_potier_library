@@ -1,5 +1,6 @@
 import { applyPercentage, applyMinus, applySlice, returnLowestNumber, SelectBestOffer } from './utils/offerUtils';
 
+// Tests utils/functions related to the calculation of the best Offer 
 test('apply 10% on 200€ expect to be equal to 180', () => {
   expect(applyPercentage(200, 10)).toBe(180);
 });
