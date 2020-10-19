@@ -1,25 +1,19 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Spinner, Container, Row, Col } from 'react-bootstrap';
 
-import MainNav from './layout/MainNav';
 import Book from './book/Book';
-import Info from './layout/Info';
 
 import BookContext from '../context/book/bookContext';
 import InfoContext from '../context/info/infoContext';
 
 const Books = () => {
     // IMPORT CONTEXT
-    const { books, filtered_book_list, loadBooks, filterBooks, loading } = useContext(BookContext);
+    const { books, filtered_book_list, loadBooks, filterBooks, loading, search } = useContext(BookContext);
     const { setInfo } = useContext(InfoContext);
-
-    // LOCAL STATE
-    const [search, setSearch] = useState('');
-    const handleChange = e => setSearch(e.target.value)
 
     useEffect(() => {
         if (!books.length) loadBooks();
-        if (search) filterBooks(search);
+        if (search) filterBooks();
         // eslint-disable-next-line
     }, [search])
 
@@ -31,8 +25,6 @@ const Books = () => {
 
     return (
         <div className="book-list">
-            <MainNav search={search} handleChange={handleChange} />
-            <Info />
             <br />
             <Container>
                 {loading ?

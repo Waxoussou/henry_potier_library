@@ -11,8 +11,10 @@ export default (state, action) => {
         case ACTIONS.FILTER_BOOKS:
             return {
                 ...state,
-                filtered_book_list: state.books.filter(({ title }) => title.toLowerCase().includes(action.payload.toLowerCase()))
+                filtered_book_list: state.books.filter(({ title }) => title.toLowerCase().includes(state.search.toLowerCase()))
             }
+        case ACTIONS.SET_SEARCH:
+            return { ...state, search: action.payload }
         default:
             return state
     }

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import { Container, Accordion, Card, Jumbotron } from 'react-bootstrap';
-import Nav from './layout/Nav';
 import CheckoutTable from './checkout/CheckoutTable';
 import CheckoutForm from './checkout/CheckoutForm';
 
@@ -17,24 +16,24 @@ const Checkout = () => {
     }, [cart])
 
     return <>
-        <Nav />
         <br />
         <Container >
             <Accordion defaultActiveKey="0">
-                <Card>
-                    <Accordion.Toggle as={Card.Header} eventKey="0">
+                <Card bg={'info'}>
+                    <Accordion.Toggle style={{ color: "white", fontWeight: 700 }} as={Card.Header} eventKey="0">
                         Shopping Cart</Accordion.Toggle>
                     <Accordion.Collapse eventKey="0">
-                        <Card.Body>
+                        <Card.Body style={{ background: 'white' }}>
                             <CheckoutTable cart={cart} total_items={total_items} best_offer={best_offer}
                                 deleteFromCart={deleteFromCart} addBookToCart={addBookToCart} total_price={total_price} />
                         </Card.Body>
                     </Accordion.Collapse>
                 </Card>
-                <Card>
-                    <Accordion.Toggle as={Card.Header} eventKey="1">Checkout!</Accordion.Toggle>
+                <Card bg={'info'}>
+                    <Accordion.Toggle as={Card.Header} style={{ color: "white", fontWeight: 700 }} eventKey="1">
+                        Checkout</Accordion.Toggle>
                     <Accordion.Collapse eventKey="1">
-                        <Card.Body>
+                        <Card.Body style={{ background: 'white' }}>
                             <Jumbotron>
                                 <p>No cash needed, it's magic ! Just send us our address details, we'll send a delivery owl within an hour !</p>
                                 <small className='text-muted' >Tom, Your librarian</small>

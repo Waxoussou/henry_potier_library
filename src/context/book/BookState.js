@@ -11,7 +11,8 @@ const BookState = props => {
     const initialState = {
         books: [],
         filtered_book_list: [],
-        loading: true
+        loading: true,
+        search: ''
     }
     const [state, dispatch] = useReducer(bookReducer, initialState);
 
@@ -24,8 +25,11 @@ const BookState = props => {
             console.log(error);
         }
     }
-    const filterBooks = (word) => {
-        dispatch({ type: ACTIONS.FILTER_BOOKS, payload: word })
+    const filterBooks = () => {
+        dispatch({ type: ACTIONS.FILTER_BOOKS })
+    }
+    const setSearch = word => {
+        dispatch({ type: ACTIONS.SET_SEARCH, payload: word })
     }
 
 
@@ -35,8 +39,10 @@ const BookState = props => {
                 books: state.books,
                 filtered_book_list: state.filtered_book_list,
                 loading: state.loading,
+                search: state.search,
                 loadBooks,
-                filterBooks
+                filterBooks,
+                setSearch
             }}>
             {props.children}
         </BookContext.Provider>

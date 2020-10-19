@@ -8,7 +8,7 @@ const TrashIcon = () => {
     </svg>
 }
 
-const UpdateQuantity = ({ item, total_items, total_price, best_offer, deleteFromCart, addBookToCart }) => {
+const UpdateQuantity = ({ item, deleteFromCart, addBookToCart }) => {
     return <Fragment>
         <tr>
             <td>
@@ -23,9 +23,6 @@ const UpdateQuantity = ({ item, total_items, total_price, best_offer, deleteFrom
                             <Button style={{ margin: '0 5px' }} variant='light' disabled> {item.quantity}</Button>
                             <Button onClick={() => addBookToCart(item)} variant='secondary' size='sm'>+</Button>
                         </ButtonGroup >
-                    </Col>
-                    <Col xs={4} sm={2}>
-                        <Button variant='link' size='sm' >Delete</Button>
                     </Col>
                 </Row>
             </td>
@@ -44,7 +41,7 @@ const CheckoutTable = ({ cart, total_items, total_price, best_offer, deleteFromC
         </thead>
         <tbody>
             {cart.map((item, index) => {
-                return <UpdateQuantity key={item.isbn + index} item={item} total_items={total_items}
+                return <UpdateQuantity key={item.isbn + index} item={item}
                     deleteFromCart={deleteFromCart} addBookToCart={addBookToCart} />
             })}
         </tbody>
@@ -64,6 +61,5 @@ const CheckoutTable = ({ cart, total_items, total_price, best_offer, deleteFromC
         </tfoot>
     </Table>
 }
-
 
 export default CheckoutTable;

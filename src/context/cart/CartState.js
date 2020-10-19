@@ -5,7 +5,6 @@ import cartReducer from './cartReducer';
 import ACTIONS from '../actionsType';
 import { SelectBestOffer } from '../../utils/offerUtils';
 
-
 const CartState = props => {
     const initialState = {
         cart: [],

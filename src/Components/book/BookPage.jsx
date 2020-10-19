@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
-import Nav from '../layout/Nav';
 import BookContext from '../../context/book/bookContext';
 
 const BookPage = ({ match }) => {
     const { books } = useContext(BookContext);
     const [current, setCurrent] = useState({});
 
-    // SET CURRENT BOOK FROM FILTERING BOOKS (state) with ROUTER PARAMS (isbn) 
+    // SET CURRENT BOOK FROM FILTERING BOOKS (::state) with ROUTER PARAMS (isbn) 
     useEffect(() => {
         const { params: { isbn } } = match
         const current_book = books.filter(book => isbn === book.isbn)
@@ -16,7 +15,6 @@ const BookPage = ({ match }) => {
     }, [])
 
     return <>
-        <Nav />
         {current && <>
             <Card border={'light'}>
                 <Card.Header><h2>{current.title}</h2></Card.Header>
@@ -27,6 +25,7 @@ const BookPage = ({ match }) => {
                     </Card.Text>
                 </Card.Body>
             </Card>
+
         </>
         }
     </>

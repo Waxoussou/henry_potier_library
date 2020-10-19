@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import Nav from './Components/layout/Nav';
 import Books from './Components/Books';
 import BookPage from './Components/book/BookPage';
 import Checkout from './Components/Checkout';
@@ -13,6 +13,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <Nav></Nav>
         <Switch>
           <Route exact path='/' component={Books} />
           <Route exact path='/book/:isbn' component={BookPage} />
