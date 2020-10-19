@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-/__test__
+*/__test__
 
 # production
 /build
