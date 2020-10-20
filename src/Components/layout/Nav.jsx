@@ -33,8 +33,8 @@ const Nav = () => {
                     <Navbar.Brand >
                         <Cart />
                     </Navbar.Brand>
-                </> :
-                <Button onClick={() => history.goBack()} variant='outline-info'>GO BACK</Button>
+                </> :   
+                <Button data-testid='go-back' onClick={() => history.goBack()} variant='outline-info'>GO BACK</Button>
             }
         </ Navbar>
         <Info />

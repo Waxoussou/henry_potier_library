@@ -5,8 +5,7 @@ import CartContext from '../../context/cart/cartContext';
 import InfoContext from '../../context/info/infoContext';
 
 const Cart = () => {
-    const cartState = useContext(CartContext);
-    const { total_items } = cartState;
+    const { total_items } = useContext(CartContext);
     const { setInfo } = useContext(InfoContext);
 
     const handleClick = () => {
