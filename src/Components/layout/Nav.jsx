@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useLocation, useHistory } from 'react-router-dom'
 import { Navbar, Form, InputGroup, FormControl, Button } from 'react-bootstrap';
 
-import Cart from './Cart';
+import CartLink from './CartLink';
 import Info from './Info';
 import BookContext from '../../context/book/bookContext';
 
@@ -31,10 +31,10 @@ const Nav = () => {
                         </InputGroup>
                     </Form>
                     <Navbar.Brand >
-                        <Cart />
+                        <CartLink />
                     </Navbar.Brand>
-                </> :   
-                <Button data-testid='go-back' onClick={() => history.goBack()} variant='outline-info'>GO BACK</Button>
+                </> :
+                <Button onClick={() => history.goBack()} variant='outline-info'>GO BACK</Button>
             }
         </ Navbar>
         <Info />

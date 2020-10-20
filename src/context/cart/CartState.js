@@ -42,12 +42,13 @@ const CartState = props => {
             `${current_item.isbn}` :
             `${isbns},${current_item.isbn}`, '')
         const URL = `http://henri-potier.xebia.fr/books/{${ISBNs}}/commercialOffers`
-        // then fetch 
+        // then fetch data
         try {
             const res = await fetch(URL);
             const json = await res.json();
-            const new_price = SelectBestOffer(state.total_price, json); // select the best offer according to the json object send in paramater(result of the fetch)
-            //    and dispatch
+            // select the best offer according to the json object send in paramater(result of the fetch)
+            const new_price = SelectBestOffer(state.total_price, json);
+            // and dispatch to the reducer
             dispatch({ type: ACTIONS.UPDATE_COMMERCIAL_OFFERS, payload: { commercial_offers: json, best_offer: new_price } });
         } catch (error) {
             console.error(error.message)

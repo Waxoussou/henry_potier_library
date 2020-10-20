@@ -4,7 +4,7 @@ import { Card, Button } from 'react-bootstrap';
 import CartContext from '../../context/cart/cartContext';
 
 // BOOK CARD COMPONENT
-const Book = ({ book }) => {
+const BookCard = ({ book }) => {
     const cartState = useContext(CartContext);
     const { addBookToCart } = cartState;
     const handleClick = e => {
@@ -17,7 +17,7 @@ const Book = ({ book }) => {
                 <Card.Img style={{ backgroundSize: 'contains', width: 120, height: '100%', minHeight: 200, margin: '10' }} variant="top" src={book.cover} />
                 <Card.Body style={{ display: 'flex', flexDirection: 'column' }}>
                     <Card.Title>{book.title}</Card.Title>
-                    <Card.Text>{book.price} €</Card.Text>
+                    <Card.Text className='text-secondary' style={{ fontWeight: 600 }}>{book.price} EUR</Card.Text>
                     <Button style={{ marginTop: 'auto' }} onClick={handleClick} variant="outline-info">Add to Cart</Button>
                 </Card.Body>
             </Card>
@@ -25,4 +25,4 @@ const Book = ({ book }) => {
     </div >
 }
 
-export default Book;
+export default BookCard;

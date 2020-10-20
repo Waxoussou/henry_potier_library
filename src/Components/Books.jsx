@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { Spinner, Container, Row, Col } from 'react-bootstrap';
 
-import Book from './book/Book';
+import BookCard from './book/BookCard';
 
 import BookContext from '../context/book/bookContext';
 import InfoContext from '../context/info/infoContext';
@@ -32,12 +32,12 @@ const Books = () => {
                     <>
                         {!search ? //user not trying to filter list => render all books 
                             < Row style={{ rowGap: 20 }}>
-                                {books.map(book => <Col key={book.isbn} xs={12} md={6} lg={4}  > <Book book={book} /></Col>)}
+                                {books.map(book => <Col key={book.isbn} xs={12} md={6} lg={4}  > <BookCard book={book} /></Col>)}
                             </Row> : null}
                         {/* search is active and results are found => render filtered list of books instead */}
                         {search && filtered_book_list && filtered_book_list.length ?
                             <Row style={{ rowGap: 20 }}>
-                                {filtered_book_list.map(book => <Col key={book.isbn} xs={12} md={6} lg={4} > <Book book={book} /></Col>)}
+                                {filtered_book_list.map(book => <Col key={book.isbn} xs={12} md={6} lg={4} > <BookCard book={book} /></Col>)}
                             </Row> : null}
                     </>
                 }

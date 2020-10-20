@@ -36,7 +36,7 @@ const CheckoutTable = ({ cart, total_items, total_price, best_offer, deleteFromC
         <thead style={{ borderBottom: "1px solid #6D757D" }}>
             <tr>
                 <th colSpan={2}></th>
-                <Row as={'th'} style={{ fontSize: 14, justifyContent: 'flex-end' }}>price</Row>
+                <Row as={'th'} className='text-secondary' style={{ fontSize: 14, justifyContent: 'flex-end' }}>price</Row>
             </tr>
         </thead>
         <tbody>
@@ -48,7 +48,7 @@ const CheckoutTable = ({ cart, total_items, total_price, best_offer, deleteFromC
         <tfoot style={{ borderTop: '1px solid #242F3E' }}>
             <tr>
                 <td colSpan={2}></td>
-                <Row as={'td'} style={{ fontWeight: 700 }} >Subtotal ({total_items} items): EUR {total_price}</Row>
+                <Row as={'td'} style={{ fontWeight: 700 }}  >Subtotal ({total_items} items): EUR {total_price}</Row>
             </tr>
             <tr>
                 <td colSpan={2}></td>
@@ -56,7 +56,7 @@ const CheckoutTable = ({ cart, total_items, total_price, best_offer, deleteFromC
             </tr>
             <tr>
                 <td colSpan={2}></td>
-                <Row as={'td'} >Total : EUR {best_offer && best_offer.toFixed(2)}</Row>
+                <Row as={'td'} style={{ fontWeight: 700 }} className='text-success' >Total : EUR {best_offer && best_offer.toFixed(2)}</Row>
             </tr>
         </tfoot>
     </Table>
