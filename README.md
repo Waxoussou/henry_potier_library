@@ -1,11 +1,11 @@
 # henry_potier_library
 
 ## HOW TO START ?
-1 clone this project
-1 go to project directory 
-1 run `npm init`
-1 use script 'npm start'
-1 you're good to go, your browser should open on localhost:3000  
+* clone this project
+* go to project directory 
+* run `npm init`
+* use script 'npm start'
+* you're good to go, your browser should open on localhost:3000  
 
 
 ## path : '/' 
