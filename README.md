@@ -1,6 +1,6 @@
 # henry_potier_library
 
-## HOW TO START ?
+### To get started :
 * clone this project
 * go to project directory 
 * run `npm init`
